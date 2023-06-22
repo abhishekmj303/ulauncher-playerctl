@@ -6,7 +6,6 @@
 
 ## Features
 
-
 - Info and Status of the song
 - Supported controls for the players:
   - [x] play-pause
@@ -31,3 +30,5 @@
 ```
 https://github.com/abhishekmj303/ulauncher-playerctl
 ```
+
+PS: If you are thinking which theme I am using, it's [Catppuccin](https://github.com/catppuccin/ulauncher)
