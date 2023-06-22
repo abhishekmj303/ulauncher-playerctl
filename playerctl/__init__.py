@@ -4,6 +4,20 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+class Player:
+    def __init__(self, name, status, song, album):
+        self.name = name
+        self.status = status
+        self.song = song
+        self.album = album
+    
+    def __str__(self):
+        return f'{self.name}'
+    
+    def __repr__(self):
+        return f'{self.name}'
+
+
 # Run the command and return the output
 def _run(command):
     try:
@@ -18,16 +32,25 @@ def _run(command):
 # Check if any player is running
 def is_player_running():
     result = _run('playerctl -l')
-    if result == "No players found":
+    if result in ["No players found", ""]:
         return False
     return True
 
 
-# List all the players
-def list_players():
+# Get all the player's list
+def get_players_list():
     if not is_player_running():
         return None
-    return _run('playerctl -l').split('\n')
+    result = _run('playerctl -l').split('\n')
+    players = []
+    for r in result:
+        players.append(get_player_info(r))
+    return players
+
+
+# Get the player info
+def get_player_info(player):
+    return Player(player, get_player_status(player), get_current_song(player), get_current_album(player))
 
 
 # Get the status of the player
@@ -37,7 +60,7 @@ def get_player_status(player):
 
 # Get the current song
 def get_current_song(player):
-    return _run(f'playerctl -p {player} metadata --format "{{artist}} - {{title}}"')
+    return _run('playerctl -p '+player+' metadata --format "{{artist}} - {{title}}"')
 
 
 # Get the current album

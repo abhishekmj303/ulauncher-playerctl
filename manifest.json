@@ -1,0 +1,33 @@
+{
+  "required_api_version": "^2.0.0",
+  "name": "Playerctl",
+  "description": "Control any media player (Spotify, VLC, Browsers, etc) with playerctl",
+  "developer_name": "Abhishek M J",
+  "icon": "images/music.png",
+  "options": {
+    "query_debounce": 0.05
+  },
+  "preferences": [
+    {
+      "id": "playerctl_kw",
+      "type": "keyword",
+      "name": "Playerctl Extension",
+      "description": "Show all media players",
+      "default_value": "mp"
+    },
+    {
+      "id": "playerctl_def_player",
+      "type": "text",
+      "name": "Default Player",
+      "description": "Default Player to use (eg: spotify, vlc, brave, firefox, etc)",
+      "default_value": "spotify"			
+    },
+    {
+      "id": "playerctl_def_kw",
+      "type": "keyword",
+      "name": "Default Player",
+      "description": "Keyword for above Default Player",
+      "default_value": "spt"			
+    }
+  ]
+}
