@@ -33,7 +33,7 @@ def player_page_items(player):
     player = playerctl.get_player_info(player)
     logger.debug(f'Player: {player}')
     
-    if playerctl.get_player_status(player) == 'Playing':
+    if player.status == 'Playing':
         items.append(ExtensionResultItem(icon='images/pause.png',
                                         name='Pause',
                                         on_enter=ExtensionCustomAction({'name': player,
@@ -51,12 +51,11 @@ def player_page_items(player):
                                      name='Previous',
                                      on_enter=ExtensionCustomAction({'name': player,
                                                                      'action': 'previous'})))
+    now_status = f'Now {player.status}'
     if player.album:
-        now_playing = f'Now Playing: {player.album}'
-    else:
-        now_playing = 'Now Playing'
+        now_status = f'{now_status}: {player.album}'
     items.append(ExtensionResultItem(icon='images/music.png',
                                         name=player.song,
-                                        description=now_playing,
+                                        description=now_status,
                                         on_enter=HideWindowAction()))
     return items
