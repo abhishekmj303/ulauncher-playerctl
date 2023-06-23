@@ -32,6 +32,13 @@ def player_page_items(player):
     items = []
     player = playerctl.get_player_info(player)
     logger.debug(f'Player: {player}')
+
+    if player.status is None:
+        items.append(ExtensionResultItem(icon='images/record-vinyl.png',
+                                         name=f'Player {player.name} found',
+                                         description='Please open {player.name}',
+                                         on_enter=HideWindowAction()))
+        return items
     
     if player.status == 'Playing':
         items.append(ExtensionResultItem(icon='images/pause.png',

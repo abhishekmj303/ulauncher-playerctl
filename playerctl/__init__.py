@@ -32,7 +32,7 @@ def _run(command):
 # Check if any player is running
 def is_player_running():
     result = _run('playerctl -l')
-    if result in ["No players found", ""]:
+    if result in ['No players found', '']:
         return False
     return True
 
@@ -50,7 +50,10 @@ def get_players_list():
 
 # Get the player info
 def get_player_info(player):
-    return Player(player, get_player_status(player), get_current_song(player), get_current_album(player))
+    status = get_player_status(player)
+    if status in ['No players found', '']:
+        return Player(player, None, None, None)
+    return Player(player, status, get_current_song(player), get_current_album(player))
 
 
 # Get the status of the player
