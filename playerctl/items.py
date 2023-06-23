@@ -36,7 +36,7 @@ def player_page_items(player):
     if player.status is None:
         items.append(ExtensionResultItem(icon='images/record-vinyl.png',
                                          name=f'Player {player.name} found',
-                                         description='Please open {player.name}',
+                                         description=f'Please open {player.name}',
                                          on_enter=HideWindowAction()))
         return items
     
